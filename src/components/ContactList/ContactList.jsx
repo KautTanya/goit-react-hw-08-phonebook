@@ -40,7 +40,7 @@ export const ContactList = () => {
           <ContactItem
             name={state.name}
             key={state.id}
-            number={state.phone}
+            number={state.number}
             id={state.id}
           />
         );

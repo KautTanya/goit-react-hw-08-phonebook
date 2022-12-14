@@ -10,17 +10,22 @@ export default function Contacts() {
       style={{
         width: '1000px',
         margin: '0 auto',
-        padding: '0 50px',
         display: 'flex',
-        flexDirection: 'column',
+        justifyContent: 'space-around',
         alignItems: 'center',
+        
       }}
     >
-      <MainTitle />
+      <div>
+      <MainTitle title='Phonebook'/>
       <ContactForm />
-      <Filter />
+      </div>
+      <div>
       <SectionTitle title="Contacts"/>
-        <ContactList />
+      <Filter />
+      
+      <ContactList />
+      </div>
     
     </div>
   );

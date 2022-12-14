@@ -3,8 +3,8 @@ import {Forma, Input, Error, Button, Label, Title} from '../ContactForm/ContactF
 import { logIn } from 'redux/authOperations';
 import { useDispatch } from 'react-redux';
 const initialValues = {
-    name: '',
-    number: '',
+  email: '',
+  password: '',
 }
 
 export const LoginForm = () => {

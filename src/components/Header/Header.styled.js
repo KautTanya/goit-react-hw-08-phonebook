@@ -3,6 +3,7 @@ import { NavLink } from 'react-router-dom';
 
 export const NavigationLink = styled(NavLink)`
   display: flex;
+  text-decoration: none;
   justify-content: center;
   align-items: center;
   padding: 10px 40px;
@@ -10,15 +11,15 @@ export const NavigationLink = styled(NavLink)`
   font-size: 15px;
   font-weight: bold;
   background-color: transparent;
-  color: #135600;
-  border: 3px solid #135600;
+  color: #00457E;
+  border: 3px solid #00457E;
   border-radius: 5px;
   max-height: 50px;
   cursor: pointer;
-  /* opacity: 0.5; */
   &:hover,
   &:focus {
-    background-color: rgb(204, 207, 44);
+    background-color: #6B99C3;
+    color: white;
   }
   &:not(:last-child) {
     margin-left: auto;
@@ -26,7 +27,7 @@ export const NavigationLink = styled(NavLink)`
   }
   &.active {
     pointer-events: none;
-    /* opacity: 1; */
-    background-color: rgb(204, 207, 44);
+    background-color: #6B99C3;
+    color: white;
   }
 `;

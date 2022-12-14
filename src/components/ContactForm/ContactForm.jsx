@@ -25,7 +25,7 @@ export const ContactForm = () => {
                 contact.name.toLowerCase() === values.name.toLowerCase().trim()
             )
           ) {
-            Notify.failure('Such a contact exists in your contacts list...');
+            Notify.failure('This contact is already in the phonebook)');
           }
           if (
             !contacts.items.some(
@@ -34,7 +34,7 @@ export const ContactForm = () => {
             )
           ) {
             dispatch(addContacts(values));
-            Notify.success('Contact created? horraaaaaaaay)');
+            Notify.success('Contact saved successfully)');
           }
         resetForm();
     };

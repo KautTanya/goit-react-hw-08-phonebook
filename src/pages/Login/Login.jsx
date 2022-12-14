@@ -1,7 +1,7 @@
 import { LoginForm } from 'components/LoginForm/LoginForm';
 const styles = {
   container: {
-    minHeight: 'calc(100vh - 50px)',
+    minHeight: 'calc(100vh - 100px)',
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
