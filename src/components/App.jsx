@@ -1,32 +1,43 @@
-// import { useState, useEffect } from 'react';
-import { MainTitle } from './MainTitle/MainTitle';
-import { ContactForm } from './ContactForm/ContactForm';
-import {ContactList} from './ContactList/ContactList';
-import { SectionTitle } from './SectionTitle/SectionTitle';
-import { Filter} from './Filter/Filter';
+import { lazy } from 'react';
+import { Route, Routes } from 'react-router-dom';
+import { Layout } from './Layout';
+import { PrivateRoute } from './PrivateRoute';
+import { RestrictedRoute } from './RestrictedRoute';
+const HomePage = lazy(() => import('../pages/Home/Home'));
+const RegisterPage = lazy(() => import('../pages/Register/Register'));
+const LoginPage = lazy(() => import('../pages/Login/Login'));
+const ContactsPage = lazy(() => import('../pages/Contacts/Contacts'));
 
-
-export default function App(){
-  return(
-  <div
-            style={{
-                  height: '100vh',
-                  display: 'flex',
-                  flexDirection: 'column',
-                  alignItems: 'center',
-                  backgroundColor: '#E4E5EA',
-                }}>
-          <MainTitle title = 'Phonebook'/>
-          <ContactForm/>
-          <SectionTitle title = 'Contacts'/>
-             <Filter/>
-              
-            <ContactList/>
-                      
-      </div>
-);
-}
-
+export const App = () => {
+  return (
+    <Routes>
+      <Route path="/" element={<Layout />}>
+        <Route index element={<HomePage />} />
+        <Route
+          path="/register"
+          element={
+            <RestrictedRoute
+              redirectTo="/contacts"
+              component={<RegisterPage />}
+            />
+          }
+        />
+        <Route
+          path="/login"
+          element={
+            <RestrictedRoute redirectTo="/contacts" component={<LoginPage />} />
+          }
+        />
+        <Route
+          path="/contacts"
+          element={
+            <PrivateRoute redirectTo="/login" component={<ContactsPage />} />
+          }
+        />
+      </Route>
+    </Routes>
+  );
+};
  
 
   

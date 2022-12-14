@@ -1,6 +1,8 @@
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import * as yup from 'yup';
 import { addContacts } from 'redux/operations';
+import { getContacts } from 'redux/selectors';
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import { Formik} from "formik"
 import {Forma, Input, Error, Button, Label} from './ContactForm.styled'
 
@@ -14,9 +16,26 @@ const shema = yup.object().shape({
 });
 
 export const ContactForm = () => {
+    const contacts = useSelector(getContacts);
     const dispatch = useDispatch();
     const handleSubmit = (values, { resetForm }) => {
-        dispatch(addContacts(values));
+        if (
+            contacts.items.some(
+              contact =>
+                contact.name.toLowerCase() === values.name.toLowerCase().trim()
+            )
+          ) {
+            Notify.failure('Such a contact exists in your contacts list...');
+          }
+          if (
+            !contacts.items.some(
+              contact =>
+                contact.name.toLowerCase() === values.name.toLowerCase().trim()
+            )
+          ) {
+            dispatch(addContacts(values));
+            Notify.success('Contact created? horraaaaaaaay)');
+          }
         resetForm();
     };
     return(
